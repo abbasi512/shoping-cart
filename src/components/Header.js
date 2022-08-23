@@ -20,6 +20,7 @@ const Header = () => {
   const {
     state: { cart },
     dispatch,
+    productDispatch,
   } = CartState();
   return (
     <Navbar bg="dark" variant="dark" style={{ height: 80 }}>
@@ -43,11 +44,17 @@ const Header = () => {
             placeholder="Search"
             className="me-2"
             aria-label="Search"
+            onChange={(e) => {
+              productDispatch({
+                type: "FILTER_BY_SEARCH",
+                payload: e.target.value,
+              });
+            }}
           />
           <Button variant="outline-success">Search</Button>
         </Form>
         <Nav>
-          <Dropdown alignRight>
+          <Dropdown>
             <Dropdown.Toggle variant="success">
               <FaShoppingCart color="white" fontSize="25px" />
               <Badge>{cart.length}</Badge>

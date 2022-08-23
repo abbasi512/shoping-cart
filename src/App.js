@@ -11,10 +11,10 @@ function App() {
         <Header />
         <div>
           <Routes>
-            <Route path="/" exact element={<Home />}></Route>
+            <Route path="/" key="/" exact element={<Home />}></Route>
           </Routes>
           <Routes>
-            <Route path="/cart" exact element={<Cart />}></Route>
+            <Route path="/cart" key="/cart" exact element={<Cart />}></Route>
           </Routes>
         </div>
       </BrowserRouter>

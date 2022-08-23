@@ -34,7 +34,19 @@ const Cart = () => {
                   <Rating rating={prod.ratings} />
                 </Col>
                 <Col md={2}>
-                  <Form.Control as="select" value={prod.qty}>
+                  <Form.Control
+                    as="select"
+                    value={prod.qty}
+                    onChange={(e) => {
+                      dispatch({
+                        type: "CHANGE_CART_QTY",
+                        payload: {
+                          id: prod.id,
+                          qty: e.target.value,
+                        },
+                      });
+                    }}
+                  >
                     {[...Array(prod.inStock).keys()].map((x) => (
                       <option key={x + 1}>{x + 1}</option>
                     ))}
@@ -44,12 +56,12 @@ const Cart = () => {
                   <Button
                     type="button"
                     variant="light"
-                    onClick={() =>
+                    onClick={() => {
                       dispatch({
                         type: "REMOVE_FROM_CART",
-                        payload: "prod",
-                      })
-                    }
+                        payload: { id: prod.id },
+                      });
+                    }}
                   >
                     <AiFillDelete fontSize="20px" />
                   </Button>
